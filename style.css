@@ -1,0 +1,11 @@
+html, body
+{
+    margin: 0;
+    padding: 0;
+    background-color: #212121;
+    color: #fafafa;
+    overflow: hidden;
+    font-family: 'Courier';
+    font-size: 13pt;
+    line-height: 10pt;
+}
