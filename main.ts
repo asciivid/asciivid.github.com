@@ -7,8 +7,8 @@ let rgb = true;
 let portrait: boolean = window.innerHeight > window.innerWidth;
 let aspect = 16/9;
 const mn = 64;
-let width = portrait ? mn *0.75 : Math.floor(mn * aspect);
-let height = portrait ? Math.floor(mn *0.75 * aspect) : mn;
+let width = portrait ? mn /2 : Math.floor(mn * aspect);
+let height = portrait ? Math.floor(mn /2* aspect) : mn;
 
 console.log("width: ", width);
 console.log("height: ", height);
