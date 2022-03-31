@@ -48,11 +48,11 @@ async function render()
     for (let i = 0; i < height; i++)
     {
         
-        for (let j = 0; j < width; j++)
+        for (let j = 1; j <= width; j++)
         {
-            let r = image.data[j*4 + i*width*4 + 0];
-            let g = image.data[j*4 + i*width*4 + 1];
-            let b = image.data[j*4 + i*width*4 + 2];
+            let r = image.data[(width-j)*4 + i*width*4 + 0];
+            let g = image.data[(width-j)*4 + i*width*4 + 1];
+            let b = image.data[(width-j)*4 + i*width*4 + 2];
 
             let value = Math.floor((r * 0.3 + g * 0.59 + b * 0.11))//Math.floor((r+g+b)/3)//
             let ratio = palette.length/255

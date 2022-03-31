@@ -83,10 +83,10 @@ function render() {
             image = ctx.getImageData(0, 0, width, height);
             txt = "";
             for (i = 0; i < height; i++) {
-                for (j = 0; j < width; j++) {
-                    r = image.data[j * 4 + i * width * 4 + 0];
-                    g = image.data[j * 4 + i * width * 4 + 1];
-                    b = image.data[j * 4 + i * width * 4 + 2];
+                for (j = 1; j <= width; j++) {
+                    r = image.data[(width - j) * 4 + i * width * 4 + 0];
+                    g = image.data[(width - j) * 4 + i * width * 4 + 1];
+                    b = image.data[(width - j) * 4 + i * width * 4 + 2];
                     value = Math.floor((r * 0.3 + g * 0.59 + b * 0.11)) //Math.floor((r+g+b)/3)//
                     ;
                     ratio = palette.length / 255;
