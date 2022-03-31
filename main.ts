@@ -3,8 +3,8 @@ const FPS = 60;
 //const palette = "Ñ@#W$9876543210?!abc;:+=-,._             ";
 const palette = "@%#*+=-:.  "
 let camera: MediaStream;
-let rgb = true;
 let portrait: boolean = window.innerHeight > window.innerWidth;
+let rgb = portrait;
 let aspect = 16/9;
 const mn = 64;
 let width = portrait ? mn /2 : Math.floor(mn * aspect);
