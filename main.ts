@@ -1,14 +1,14 @@
 let renderDiv = document.getElementById("render")
 const FPS = 60;
 //const palette = "Ñ@#W$9876543210?!abc;:+=-,._             ";
-const palette = "@%#*+=-:.     "
+const palette = "@%#*+=-:.  "
 let camera: MediaStream;
-
+let rgb = true;
 let portrait: boolean = window.innerHeight > window.innerWidth;
 let aspect = 16/9;
 const mn = 64;
-let width = portrait ? mn : Math.floor(mn * aspect);
-let height = portrait ? Math.floor(mn * aspect) : mn;
+let width = portrait ? mn *0.75 : Math.floor(mn * aspect);
+let height = portrait ? Math.floor(mn *0.75 * aspect) : mn;
 
 console.log("width: ", width);
 console.log("height: ", height);
@@ -50,16 +50,16 @@ async function render()
         
         for (let j = 0; j < width; j++)
         {
-            let r = image.data[j + i*width*4 + 0];
-            let g = image.data[j + i*width*4 + 1];
-            let b = image.data[j + i*width*4 + 2];
+            let r = image.data[j*4 + i*width*4 + 0];
+            let g = image.data[j*4 + i*width*4 + 1];
+            let b = image.data[j*4 + i*width*4 + 2];
 
-            let value = Math.floor((r+g+b)/3)//Math.floor((r * 0.3 + g * 0.59 + b * 0.11))
+            let value = Math.floor((r * 0.3 + g * 0.59 + b * 0.11))//Math.floor((r+g+b)/3)//
             let ratio = palette.length/255
             let idx = palette.length - Math.floor(value * ratio);
             idx = Math.max(0, Math.min(idx, palette.length-1))
             let c = palette[idx];
-            txt += (c === ' ') ? '&nbsp' : c;
+            txt += (c === ' ') ? '&nbsp' : rgb ? `<span style="color: rgb(${r}, ${g}, ${b})">${c}</span>` : c;
         }
         txt += '<br>'
     }

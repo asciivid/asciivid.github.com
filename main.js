@@ -37,13 +37,14 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 var renderDiv = document.getElementById("render");
 var FPS = 60;
 //const palette = "Ñ@#W$9876543210?!abc;:+=-,._             ";
-var palette = "@%#*+=-:.     ";
+var palette = "@%#*+=-:.  ";
 var camera;
+var rgb = true;
 var portrait = window.innerHeight > window.innerWidth;
 var aspect = 16 / 9;
 var mn = 64;
-var width = portrait ? mn : Math.floor(mn * aspect);
-var height = portrait ? Math.floor(mn * aspect) : mn;
+var width = portrait ? mn * 0.75 : Math.floor(mn * aspect);
+var height = portrait ? Math.floor(mn * 0.75 * aspect) : mn;
 console.log("width: ", width);
 console.log("height: ", height);
 var snap = document.createElement("video");
@@ -83,16 +84,16 @@ function render() {
             txt = "";
             for (i = 0; i < height; i++) {
                 for (j = 0; j < width; j++) {
-                    r = image.data[j + i * width * 4 + 0];
-                    g = image.data[j + i * width * 4 + 1];
-                    b = image.data[j + i * width * 4 + 2];
-                    value = Math.floor((r + g + b) / 3) //Math.floor((r * 0.3 + g * 0.59 + b * 0.11))
+                    r = image.data[j * 4 + i * width * 4 + 0];
+                    g = image.data[j * 4 + i * width * 4 + 1];
+                    b = image.data[j * 4 + i * width * 4 + 2];
+                    value = Math.floor((r * 0.3 + g * 0.59 + b * 0.11)) //Math.floor((r+g+b)/3)//
                     ;
                     ratio = palette.length / 255;
                     idx = palette.length - Math.floor(value * ratio);
                     idx = Math.max(0, Math.min(idx, palette.length - 1));
                     c = palette[idx];
-                    txt += (c === ' ') ? '&nbsp' : c;
+                    txt += (c === ' ') ? '&nbsp' : rgb ? "<span style=\"color: rgb(" + r + ", " + g + ", " + b + ")\">" + c + "</span>" : c;
                 }
                 txt += '<br>';
             }
